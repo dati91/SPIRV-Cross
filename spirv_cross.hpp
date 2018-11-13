@@ -424,7 +424,7 @@ public:
 	// for every variable that is declared, including function parameters, the callback will be called
 	// and the API user has a chance to change the textual representation of the type used to declare the variable.
 	// The API user can detect special patterns in names to guide the remapping.
-	void set_variable_type_remap_callback(const &VariableTypeRemapCallback cb)
+	void set_variable_type_remap_callback(const VariableTypeRemapCallback &cb)
 	{
 		variable_remap_callback = std::move(cb);
 	}
