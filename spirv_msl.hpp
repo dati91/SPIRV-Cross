@@ -254,7 +254,7 @@ public:
 	//    texture or sampler index to use for a particular SPIR-V description set
 	//    and binding. If resource bindings are provided, the compiler will set the
 	//    used_by_shader flag to true in any resource binding actually used by the MSL code.
-	CompilerMSL(std::vector<uint32_t> spirv, std::vector<MSLVertexAttr> *p_vtx_attrs = nullptr,
+	explicit CompilerMSL(std::vector<uint32_t> spirv, std::vector<MSLVertexAttr> *p_vtx_attrs = nullptr,
 	            std::vector<MSLResourceBinding> *p_res_bindings = nullptr);
 
 	// Alternate constructor avoiding use of std::vectors.
@@ -403,7 +403,7 @@ protected:
 	// OpcodeHandler that handles several MSL preprocessing operations.
 	struct OpCodePreprocessor : OpcodeHandler
 	{
-		OpCodePreprocessor(CompilerMSL &compiler_)
+		explicit OpCodePreprocessor(CompilerMSL &compiler_)
 		    : compiler(compiler_)
 		{
 		}

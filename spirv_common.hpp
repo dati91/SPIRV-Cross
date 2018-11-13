@@ -59,7 +59,7 @@ namespace spirv_cross
 class CompilerError : public std::runtime_error
 {
 public:
-	CompilerError(const std::string &str)
+	explicit CompilerError(const std::string &str)
 	    : std::runtime_error(str)
 	{
 	}
@@ -321,7 +321,7 @@ struct SPIRUndef : IVariant
 	{
 		type = TypeUndef
 	};
-	SPIRUndef(uint32_t basetype_)
+	explicit SPIRUndef(uint32_t basetype_)
 	    : basetype(basetype_)
 	{
 	}
@@ -457,7 +457,7 @@ struct SPIRExtension : IVariant
 		SPV_AMD_gcn_shader
 	};
 
-	SPIRExtension(Extension ext_)
+	explicit SPIRExtension(Extension ext_)
 	    : ext(ext_)
 	{
 	}
@@ -542,7 +542,7 @@ struct SPIRFunctionPrototype : IVariant
 		type = TypeFunctionPrototype
 	};
 
-	SPIRFunctionPrototype(uint32_t return_type_)
+	explicit SPIRFunctionPrototype(uint32_t return_type_)
 	    : return_type(return_type_)
 	{
 	}

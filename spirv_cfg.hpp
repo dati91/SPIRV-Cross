@@ -100,7 +100,7 @@ private:
 class DominatorBuilder
 {
 public:
-	DominatorBuilder(const CFG &cfg);
+	explicit DominatorBuilder(const CFG &cfg);
 
 	void add_block(uint32_t block);
 	uint32_t get_dominator() const

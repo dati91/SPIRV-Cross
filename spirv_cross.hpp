@@ -121,7 +121,7 @@ public:
 	friend class DominatorBuilder;
 
 	// The constructor takes a buffer of SPIR-V words and parses it.
-	Compiler(std::vector<uint32_t> ir);
+	explicit Compiler(std::vector<uint32_t> ir);
 	Compiler(const uint32_t *ir, size_t word_count);
 
 	virtual ~Compiler() = default;
@@ -424,7 +424,7 @@ public:
 	// for every variable that is declared, including function parameters, the callback will be called
 	// and the API user has a chance to change the textual representation of the type used to declare the variable.
 	// The API user can detect special patterns in names to guide the remapping.
-	void set_variable_type_remap_callback(VariableTypeRemapCallback cb)
+	void set_variable_type_remap_callback(const &VariableTypeRemapCallback cb)
 	{
 		variable_remap_callback = std::move(cb);
 	}
@@ -755,7 +755,7 @@ protected:
 
 	struct CombinedImageSamplerHandler : OpcodeHandler
 	{
-		CombinedImageSamplerHandler(Compiler &compiler_)
+		explicit CombinedImageSamplerHandler(Compiler &compiler_)
 		    : compiler(compiler_)
 		{
 		}
@@ -778,7 +778,7 @@ protected:
 
 	struct DummySamplerForCombinedImageHandler : OpcodeHandler
 	{
-		DummySamplerForCombinedImageHandler(Compiler &compiler_)
+		explicit DummySamplerForCombinedImageHandler(Compiler &compiler_)
 		    : compiler(compiler_)
 		{
 		}
@@ -790,7 +790,7 @@ protected:
 
 	struct ActiveBuiltinHandler : OpcodeHandler
 	{
-		ActiveBuiltinHandler(Compiler &compiler_)
+		explicit ActiveBuiltinHandler(Compiler &compiler_)
 		    : compiler(compiler_)
 		{
 		}
@@ -849,7 +849,7 @@ protected:
 
 	struct CombinedImageSamplerDrefHandler : OpcodeHandler
 	{
-		CombinedImageSamplerDrefHandler(Compiler &compiler_)
+		explicit CombinedImageSamplerDrefHandler(Compiler &compiler_)
 		    : compiler(compiler_)
 		{
 		}
@@ -884,7 +884,7 @@ protected:
 	std::unordered_map<uint32_t, std::unique_ptr<CFG>> function_cfgs;
 	struct CFGBuilder : OpcodeHandler
 	{
-		CFGBuilder(Compiler &compiler_);
+		explicit CFGBuilder(Compiler &compiler_);
 
 		bool follow_function_call(const SPIRFunction &func) override;
 		bool handle(spv::Op op, const uint32_t *args, uint32_t length) override;

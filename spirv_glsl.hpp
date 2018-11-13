@@ -127,7 +127,7 @@ public:
 		remap_pls_variables();
 	}
 
-	CompilerGLSL(std::vector<uint32_t> spirv_)
+	explicit CompilerGLSL(std::vector<uint32_t> spirv_)
 	    : Compiler(move(spirv_))
 	{
 		init();
